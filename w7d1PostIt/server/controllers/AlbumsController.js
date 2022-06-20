@@ -12,8 +12,8 @@ export class AlbumsController extends BaseController {
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
-    // .use(Auth0Provider.getAuthorizedUserInfo)
-    // .post('', this.createAlbum)
+      .use(Auth0Provider.getAuthorizedUserInfo)
+      .post('', this.createAlbum)
     // .put('/:id', this.editAlbum)
 
   }
@@ -38,7 +38,8 @@ export class AlbumsController extends BaseController {
     }
   }
 
-  async reateAlbum(req, res, next) {
+  async createAlbum(req, res, next) {
+    req.body.creatorId = req.userInfo.id
     try {
       const album = await albumsService.createAlbum(req.body)
     } catch (error) {

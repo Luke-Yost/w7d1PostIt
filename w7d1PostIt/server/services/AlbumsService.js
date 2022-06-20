@@ -10,10 +10,12 @@ class AlbumsService {
 
   async getById(id) {
     const album = await dbContext.Album.findById(id)
+    return album
   }
 
-  createAlbum(body) {
-
+  async createAlbum(body) {
+    const album = await dbContext.Album.create(body)
+    return album
   }
 
 }
