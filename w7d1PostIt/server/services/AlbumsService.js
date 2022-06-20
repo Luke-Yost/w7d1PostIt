@@ -3,7 +3,8 @@ import { dbContext } from "../db/DbContext"
 
 class AlbumsService {
   async getAll() {
-    const albums = await dbContext.get()
+    const albums = await dbContext.Album.get()
+    return albums
   }
 
 

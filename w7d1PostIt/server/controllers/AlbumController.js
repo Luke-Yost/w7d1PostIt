@@ -20,9 +20,10 @@ export class AlbumController extends BaseController {
 
 
 
-  getAll(req, res, next) {
+  async getAll(req, res, next) {
     try {
-      const albums = albumsService.getAll()
+      const albums = await albumsService.getAll()
+      res.send(albums)
     } catch (error) {
       next(error)
     }
