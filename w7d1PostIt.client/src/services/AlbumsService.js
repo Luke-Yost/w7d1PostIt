@@ -1,3 +1,4 @@
+import { AppState } from "../AppState";
 import { api } from "./AxiosService"
 
 
@@ -6,6 +7,7 @@ class AlbumsService {
 
   async getAlbums() {
     const res = await api.get('albums')
+    AppState.albums = res.data
     console.log(res.data);
   }
 

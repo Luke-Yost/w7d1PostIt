@@ -1,28 +1,31 @@
 <template>
 
   <div class="container">
-    <div class="row">
-
+    <div class="row d-flex justify-content-center">
+      <div class="col-3" v-for="a in albums">
+        <AlbumCard :album="a"></AlbumCard>
+      </div>
     </div>
   </div>
 
 </template>
 
 <script>
-import { onMounted } from "vue"
+import { computed, onMounted } from "vue"
 import { AppState } from "../AppState"
 import { albumsService } from "../services/AlbumsService"
+import AlbumCard from "../components/AlbumCard.vue"
 
 export default {
   setup() {
     onMounted(async () => {
-      await albumsService.getAlbums()
-    })
-
+      await albumsService.getAlbums();
+    });
     return {
-      posts: AppState.posts
-    }
-  }
+      albums: computed(() => AppState.albums)
+    };
+  },
+  components: { AlbumCard }
 }
 </script>
 
