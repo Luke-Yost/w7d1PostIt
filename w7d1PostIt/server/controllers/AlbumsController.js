@@ -42,6 +42,7 @@ export class AlbumsController extends BaseController {
     req.body.creatorId = req.userInfo.id
     try {
       const album = await albumsService.createAlbum(req.body)
+      res.send(album)
     } catch (error) {
       next(error)
     }
