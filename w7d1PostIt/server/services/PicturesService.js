@@ -10,6 +10,10 @@ class PicturesService{
   }
 
   async create(){
+
+  }
+
+  async delete(){
     
   }
 
