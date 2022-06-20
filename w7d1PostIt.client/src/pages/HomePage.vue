@@ -5,6 +5,9 @@
       <div class="col-3" v-for="a in albums">
         <AlbumCard :album="a"></AlbumCard>
       </div>
+      <div class="col-12">
+        <CreateAlbum v-if="user.name"></CreateAlbum>
+      </div>
     </div>
   </div>
 
@@ -15,6 +18,7 @@ import { computed, onMounted } from "vue"
 import { AppState } from "../AppState"
 import { albumsService } from "../services/AlbumsService"
 import AlbumCard from "../components/AlbumCard.vue"
+import CreateAlbum from "../components/CreateAlbum.vue"
 
 export default {
   setup() {
@@ -22,10 +26,11 @@ export default {
       await albumsService.getAlbums();
     });
     return {
-      albums: computed(() => AppState.albums)
+      albums: computed(() => AppState.albums),
+      user: computed(() => AppState.user)
     };
   },
-  components: { AlbumCard }
+  components: { AlbumCard, CreateAlbum }
 }
 </script>
 
