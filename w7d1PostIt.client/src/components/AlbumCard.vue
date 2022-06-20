@@ -1,10 +1,11 @@
 
 <template>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-12">
-      <div class="bg-dark p-3 rounded">
+      <div class="bg-dark p-2 rounded">
         <img class="img-fluid" :src="album.coverImg" alt="">
         <p>{{ album.name }}</p>
+        <p>{{ album.creator.name }}</p>
       </div>
     </div>
   </div>
