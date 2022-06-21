@@ -2,13 +2,13 @@ import { dbContext} from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
 
 class PicturesService{
-  // async getAll( ){
+  async getAll(query) {
+    let pictures = await dbContext.Picture.find()
+    .populate('creator')
+    .populate('album')
+    return pictures
+  }
 
-  // }
-
-  // async getById(){
-
-  // }
 
   async create(body){
     let picture = await dbContext.Picture.create(body)
@@ -16,9 +16,6 @@ class PicturesService{
     return picture
   }
 
-  // async update(id, update){
-  //   const original = await dbContext.Pictures.findById(id)
-  // }
   async delete(id, userId){
     const picture = await dbContext.Picture.findById(id)
     if(picture.creatorId.toString() != userId){

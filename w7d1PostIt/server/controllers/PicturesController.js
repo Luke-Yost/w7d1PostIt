@@ -12,14 +12,14 @@ export class PicturesController extends BaseController{
     .put('/:id', this.update)
     .delete('/:id', this.delete)
   }
-  // async getAll(req, res, next) {
-  //   try {
-  //     const pictures = await picturesService.getAll(req.query)
-  //     return res.send(pictures)
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async getAll(req, res, next) {
+    try {
+      const pictures = await picturesService.getAll(req.query)
+      return res.send(pictures)
+    } catch (error) {
+      next(error)
+    }
+  }
   async create(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
