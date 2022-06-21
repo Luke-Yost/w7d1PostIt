@@ -8,7 +8,7 @@ import { albumsService } from "../services/AlbumsService";
 export class AlbumsController extends BaseController {
 
   constructor() {
-    super('albums')
+    super('api/albums')
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
