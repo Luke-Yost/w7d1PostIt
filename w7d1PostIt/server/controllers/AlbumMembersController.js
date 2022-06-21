@@ -6,26 +6,18 @@ import BaseController from '../utils/BaseController'
 
 export class AlbumMembersController extends BaseController {
   constructor() {
-    super('api/')
+    super('api/albumMembers')
     this.router
-      .get("albums/:id/albumMembers", this.getMembersByAlbum)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('albumMembers', this.createAlbumMember)
+      .post('', this.createAlbumMember)
   }
 
-  async getMembersByAlbum(req, res, next) {
-    try {
-      const members = await albumMembersService.getMembersByAlbum(req.params.id)
-      res.send(members)
-    } catch (error) {
-      next(error)
-    }
-  }
+
 
   async createAlbumMember(req, res, next) {
     try {
       const member = await albumMembersService.createAlbumMember(req.body)
-      res.send(member)
+      return res.send(member)
     } catch (error) {
       next(error)
     }

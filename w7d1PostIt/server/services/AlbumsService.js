@@ -4,7 +4,8 @@ import { dbContext } from "../db/DbContext"
 class AlbumsService {
 
   async getAll() {
-    const albums = await dbContext.Album.find().populate('creator', '_id name')
+    const albums = await dbContext.Album.find()
+    // .populate('creator')
     return albums
   }
 

@@ -2,6 +2,7 @@ import { AuthHandler } from "../handlers/AuthHandler";
 import BaseController from "../utils/BaseController";
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { albumsService } from "../services/AlbumsService";
+import { albumMembersService } from "../services/AlbumMembersService";
 
 
 
@@ -12,6 +13,7 @@ export class AlbumsController extends BaseController {
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get("/:id/albumMembers", this.getMembersByAlbum)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createAlbum)
     // .put('/:id', this.editAlbum)
@@ -33,6 +35,15 @@ export class AlbumsController extends BaseController {
     try {
       const album = await albumsService.getById(req.params.id)
       res.send(album)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getMembersByAlbum(req, res, next) {
+    try {
+      const members = await albumMembersService.getMembersByAlbum(req.params.id)
+      res.send(members)
     } catch (error) {
       next(error)
     }
