@@ -12,7 +12,8 @@ class PicturesService{
 
   async create(body){
     let picture = await dbContext.Picture.create(body)
-    await picture.populate('creator', '_id name')
+    await picture.populate('creator')
+    await picture.populate('album')
     return picture
   }
 
