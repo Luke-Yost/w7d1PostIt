@@ -10,6 +10,8 @@ class DbContext {
   Album = mongoose.model('Album', AlbumSchema);
 
   Picture = mongoose.model('Picture', PictureSchema);
+
+
 }
 
 export const dbContext = new DbContext()
