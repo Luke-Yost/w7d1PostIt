@@ -5,7 +5,7 @@ class AlbumsService {
 
   async getAll() {
     const albums = await dbContext.Album.find()
-    // .populate('creator')
+      .populate('creator')
     return albums
   }
 

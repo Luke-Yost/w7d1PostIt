@@ -6,13 +6,13 @@ class AlbumsService {
 
 
   async getAlbums() {
-    const res = await api.get('albums')
+    const res = await api.get('api/albums')
     AppState.albums = res.data
     console.log(res.data);
   }
 
   async createAlbum(body) {
-    const res = await api.post('albums', body)
+    const res = await api.post('api/albums', body)
     console.log(res.data);
   }
 }
